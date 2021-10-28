@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity {
        }
     }
 
-    public void Sender(View view) {
-       String msg = e1.getText().toString();
+    public void SenderON(View view) {
         try{
             client.subscribe("Diego/Sci",0);
 
@@ -78,7 +77,55 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         try{
-            MqttMessage message = new MqttMessage((msg).getBytes());
+            MqttMessage message = new MqttMessage(("ON").getBytes());
+            client.publish("Diego/Sci", message);
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void SenderOFF(View view) {
+        try{
+            client.subscribe("Diego/Sci",0);
+
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+        try{
+            MqttMessage message = new MqttMessage(("OFF").getBytes());
+            client.publish("Diego/Sci", message);
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void SenderUP(View view) {
+        try{
+            client.subscribe("Diego/Sci",0);
+
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+        try{
+            MqttMessage message = new MqttMessage(("UP").getBytes());
+            client.publish("Diego/Sci", message);
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void SenderDOWN(View view) {
+        try{
+            client.subscribe("Diego/Sci",0);
+
+        }catch (MqttException e){
+            e.printStackTrace();
+        }
+        try{
+            MqttMessage message = new MqttMessage(("DOWN").getBytes());
             client.publish("Diego/Sci", message);
         }catch (MqttException e){
             e.printStackTrace();
