@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Build;//para obtener el nombre del dispositivo
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +31,15 @@ public class MainActivity extends AppCompatActivity {
     static String PASSWORD = "hola";    //la contraceña del token
     String topicStr ="diegosci";
     MqttAndroidClient client;  //  clienteMQTT este dispositivo
+    EditText e1;
 
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       e1 = (EditText) findViewById(R.id.et1);
 
        //String clientId = MqttClient.generateClientId(); //MqttClient.generateClientId();//noombre del celular
        String clientId = MqttClient.generateClientId();
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Sender(View view) {
+       String msg = e1.getText().toString();
         try{
             client.subscribe("Diego/Sci",0);
 
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         try{
-            MqttMessage message = new MqttMessage(("TodoBien").getBytes());
+            MqttMessage message = new MqttMessage((msg).getBytes());
             client.publish("Diego/Sci", message);
         }catch (MqttException e){
             e.printStackTrace();
